@@ -1,0 +1,476 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Roblox Helper</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #242424 0%, #101010 45%, #080808 100%);
+            color: white;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(15, 15, 15, 0.92);
+            border-bottom: 1px solid #292929;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #00a2ff;
+        }
+
+        .status {
+            font-size: 13px;
+            color: #9b9b9b;
+        }
+
+        /* HERO */
+
+        .hero {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+            padding: 85px 20px 40px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(0, 162, 255, 0.12);
+            border: 1px solid rgba(0, 162, 255, 0.35);
+            color: #45b8ff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 72px);
+            line-height: 1;
+            margin-bottom: 18px;
+            font-weight: 900;
+        }
+
+        h1 span {
+            color: #00a2ff;
+        }
+
+        .description {
+            max-width: 650px;
+            margin: auto;
+            color: #a8a8a8;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            max-width: 760px;
+            margin: 38px auto 0;
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+            background: #171717;
+            border: 1px solid #303030;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,.35);
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            height: 55px;
+            padding: 0 18px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            background: #222;
+            color: white;
+            font-size: 15px;
+        }
+
+        .search-box input::placeholder {
+            color: #777;
+        }
+
+        .search-box button {
+            height: 55px;
+            padding: 0 27px;
+            border: none;
+            border-radius: 10px;
+            background: #00a2ff;
+            color: white;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .search-box button:hover {
+            background: #008fe0;
+            transform: translateY(-1px);
+        }
+
+        .search-box button:active {
+            transform: scale(.97);
+        }
+
+        /* RESULT */
+
+        .result {
+            display: none;
+            max-width: 760px;
+            margin: 25px auto 0;
+            padding: 22px;
+            background: #171717;
+            border: 1px solid #303030;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .result-info {
+            color: #999;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .result-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #45b8ff;
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        .error {
+            color: #ff7777;
+        }
+
+        /* CARDS */
+
+        .features {
+            max-width: 1050px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            padding: 25px;
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 16px;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: #202020;
+            font-size: 20px;
+        }
+
+        .card h2 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #222;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .status {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            🎮 Roblox<span>Helper</span>
+        </div>
+
+        <div class="status">
+            Herramienta gratuita
+        </div>
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="badge">
+                🟢 ONLINE
+            </div>
+
+            <h1>
+                Roblox <span>Helper</span>
+            </h1>
+
+            <p class="description">
+                Pega el enlace de una experiencia de Roblox para consultar
+                y organizar información pública de tu juego.
+            </p>
+
+
+            <div class="search-box">
+
+                <input
+                    id="gameUrl"
+                    type="text"
+                    placeholder="Pega aquí el link de tu juego de Roblox..."
+                    autocomplete="off"
+                >
+
+                <button onclick="searchGame()">
+                    🔍 Buscar
+                </button>
+
+            </div>
+
+
+            <div id="result" class="result">
+
+                <div id="resultTitle" class="result-title">
+                    Resultado
+                </div>
+
+                <div id="resultInfo" class="result-info">
+                </div>
+
+                <a
+                    id="resultLink"
+                    class="result-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                ></a>
+
+            </div>
+
+        </section>
+
+
+        <section class="features">
+
+            <div class="card">
+
+                <div class="icon">
+                    🔗
+                </div>
+
+                <h2>
+                    Fácil de usar
+                </h2>
+
+                <p>
+                    Copia el enlace de una experiencia y pégalo
+                    directamente en la caja de búsqueda.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🎮
+                </div>
+
+                <h2>
+                    Roblox
+                </h2>
+
+                <p>
+                    Diseñado para trabajar con enlaces de experiencias
+                    de Roblox.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🛡️
+                </div>
+
+                <h2>
+                    Uso permitido
+                </h2>
+
+                <p>
+                    Utiliza esta herramienta con experiencias y archivos
+                    que tengas permiso para usar o distribuir.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Roblox Helper • Página creada para proyectos permitidos
+    </footer>
+
+
+    <script>
+
+        function searchGame() {
+
+            const input = document.getElementById("gameUrl");
+            const result = document.getElementById("result");
+            const title = document.getElementById("resultTitle");
+            const info = document.getElementById("resultInfo");
+            const link = document.getElementById("resultLink");
+
+            const url = input.value.trim();
+
+            if (!url) {
+
+                result.classList.add("show");
+
+                title.textContent = "⚠️ Falta el enlace";
+
+                info.innerHTML =
+                    '<span class="error">Pega primero un enlace de Roblox.</span>';
+
+                link.textContent = "";
+                link.removeAttribute("href");
+
+                return;
+            }
+
+
+            if (!url.includes("roblox.com")) {
+
+                result.classList.add("show");
+
+                title.textContent = "❌ Enlace no válido";
+
+                info.innerHTML =
+                    '<span class="error">El enlace no parece ser de Roblox.</span>';
+
+                link.textContent = "";
+                link.removeAttribute("href");
+
+                return;
+            }
+
+
+            result.classList.add("show");
+
+            title.textContent = "🎮 Enlace encontrado";
+
+            info.textContent =
+                "Se encontró un enlace de Roblox. Puedes abrirlo para comprobar la experiencia.";
+
+            link.textContent = url;
+            link.href = url;
+        }
+
+
+        document
+            .getElementById("gameUrl")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+                    searchGame();
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>
+```
