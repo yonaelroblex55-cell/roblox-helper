@@ -1,213 +1,748 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Yona Uncopylocked</title>
+    <title>Yona Uncopylocked</title>
 
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #172536 0%, #0d131a 45%, #070a0e 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            background: rgba(10, 15, 21, .95);
+            border-bottom: 1px solid #293542;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: #00a2ff;
+        }
+
+        .badge {
+            margin-left: 12px;
+            padding: 5px 9px;
+            border-radius: 7px;
+            background: #00a2ff;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .hero {
+            width: 78px;
+            height: 78px;
+            margin: auto;
+            border-radius: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, #00a2ff, #0066ff);
+            box-shadow: 0 15px 40px rgba(0,162,255,.25);
+
+            font-size: 40px;
+        }
+
+        h1 {
+            margin: 20px 0 8px;
+            font-size: 48px;
+        }
+
+        .blue {
+            color: #00a2ff;
+        }
+
+        .subtitle {
+            color: #8996a4;
+            margin-bottom: 35px;
+        }
+
+        /* SEARCH */
+
+        .search {
+            display: flex;
+            gap: 10px;
+            padding: 9px;
+
+            background: #171f28;
+            border: 1px solid #344250;
+            border-radius: 15px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,.35);
+        }
+
+        .search input {
+            flex: 1;
+            min-width: 0;
+
+            padding: 18px;
+
+            border: none;
+            outline: none;
+            border-radius: 10px;
+
+            background: #0d1319;
+            color: white;
+
+            font-size: 15px;
+        }
+
+        .search input::placeholder {
+            color: #687583;
+        }
+
+        .search button {
+            padding: 0 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #00a2ff;
+            color: white;
+
+            font-weight: bold;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .search button:hover {
+            background: #008edc;
+        }
+
+        /* ERROR */
+
+        #error {
+            display: none;
+
+            margin-top: 20px;
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: #32191d;
+            border: 1px solid #713039;
+
+            color: #ff9aa4;
+        }
+
+        /* RESULT */
+
+        #resultado {
+            display: none;
+
+            margin-top: 30px;
+
+            background: #171f28;
+            border: 1px solid #344250;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            text-align: left;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,.4);
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,162,255,.16),
+                    transparent
+                );
+        }
+
+        .game-icon {
+            width: 85px;
+            height: 85px;
+
+            border-radius: 18px;
+
+            background: #273340;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .game-name {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .game-id {
+            margin-top: 7px;
+
+            color: #7c8996;
+
+            font-size: 13px;
+        }
+
+        /* INFO */
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            padding: 20px 25px;
+
+            border-top: 1px solid #293542;
+        }
+
+        .info-card {
+            padding: 15px;
+
+            background: #10161c;
+
+            border-radius: 12px;
+        }
+
+        .label {
+            color: #73808d;
+            font-size: 12px;
+        }
+
+        .value {
+            margin-top: 6px;
+            font-weight: bold;
+        }
+
+        /* DOWNLOAD */
+
+        .download {
+            padding: 25px;
+
+            border-top: 1px solid #293542;
+        }
+
+        .download a {
+            display: block;
+
+            padding: 17px;
+
+            text-align: center;
+            text-decoration: none;
+
+            background: #16c784;
+
+            border-radius: 11px;
+
+            color: white;
+
+            font-weight: bold;
+            font-size: 16px;
+
+            transition: .2s;
+        }
+
+        .download a:hover {
+            background: #12ad70;
+            transform: translateY(-1px);
+        }
+
+        .filename {
+            margin-top: 12px;
+
+            text-align: center;
+
+            color: #75828f;
+
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 70px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #64717e;
+
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:600px) {
+
+            header {
+                padding: 0 18px;
+            }
+
+            .container {
+                margin-top: 40px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .search {
+                flex-direction: column;
+            }
+
+            .search button {
+                height: 55px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .game-header {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Yona <span>Uncopylocked</span>
+    </div>
+
+    <div class="badge">
+        RBXL
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="hero">
+        🎮
+    </div>
+
+    <h1>
+        Yona <span class="blue">Uncopylocked</span>
+    </h1>
+
+    <div class="subtitle">
+        Busca por ID o enlace de una experiencia.
+    </div>
+
+
+    <!-- BUSCADOR -->
+
+    <div class="search">
+
+        <input
+            id="gameInput"
+            type="text"
+            placeholder="ID o enlace de Roblox..."
+        >
+
+        <button onclick="buscar()">
+            🔍 Buscar
+        </button>
+
+    </div>
+
+
+    <div id="error"></div>
+
+
+    <!-- RESULTADO -->
+
+    <div id="resultado">
+
+        <div class="game-header">
+
+            <div
+                class="game-icon"
+                id="gameIcon"
+            >
+                🥚
+            </div>
+
+            <div>
+
+                <div
+                    class="game-name"
+                    id="gameName"
+                >
+                    -
+                </div>
+
+                <div
+                    class="game-id"
+                    id="gameId"
+                >
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-card">
+
+                <div class="label">
+                    Plataforma
+                </div>
+
+                <div class="value">
+                    Roblox
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="label">
+                    Archivo
+                </div>
+
+                <div
+                    class="value"
+                    id="fileType"
+                >
+                    .RBXL
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="label">
+                    Estado
+                </div>
+
+                <div
+                    class="value"
+                    id="status"
+                >
+                    Disponible
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="download">
+
+            <a
+                id="downloadButton"
+                href="#"
+                download
+            >
+                📦 Descargar .RBXL
+            </a>
+
+            <div
+                class="filename"
+                id="filename"
+            >
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 Yona Uncopylocked
+</footer>
+
+
+<script>
+
+/*
+==================================================
+   JUEGOS
+==================================================
+
+   Aquí agregas tus experiencias.
+
+   id       = ID de la experiencia
+   name     = nombre mostrado
+   icon     = emoji
+   file     = archivo .rbxl dentro del repositorio
+*/
+
+const juegos = {
+
+    "107778070777162": {
+        name: "Steal An Egg",
+        icon: "🥚",
+        file: "StealAnEgg.rbxl"
+    },
+
+    "123456789": {
+        name: "Cosmic Egg",
+        icon: "🌌",
+        file: "CosmicEgg.rbxl"
+    },
+
+    "987654321": {
+        name: "Golden Egg",
+        icon: "🥚",
+        file: "GoldenEgg.rbxl"
+    },
+
+    "555555555": {
+        name: "Egg World",
+        icon: "🐣",
+        file: "EggWorld.rbxl"
+    }
+
+};
+
+
+/*
+==================================================
+   BUSCAR
+==================================================
+*/
+
+function buscar() {
+
+    const input =
+        document
+        .getElementById("gameInput")
+        .value
+        .trim();
+
+    const resultado =
+        document
+        .getElementById("resultado");
+
+    const error =
+        document
+        .getElementById("error");
+
+
+    resultado.style.display = "none";
+    error.style.display = "none";
+
+
+    if (input === "") {
+
+        mostrarError(
+            "❌ Escribe un ID o pega un enlace de Roblox."
+        );
+
+        return;
+    }
+
+
+    /*
+       Obtener ID
+    */
+
+    let id = extraerID(input);
+
+
+    if (!id) {
+
+        mostrarError(
+            "❌ No pude encontrar un ID de experiencia válido."
+        );
+
+        return;
+    }
+
+
+    /*
+       Buscar juego
+    */
+
+    const juego = juegos[id];
+
+
+    if (!juego) {
+
+        mostrarError(
+            "❌ Ese juego no está registrado en Yona Uncopylocked."
+        );
+
+        return;
+    }
+
+
+    /*
+       Mostrar información
+    */
+
+    document.getElementById("gameName").textContent =
+        juego.name;
+
+    document.getElementById("gameIcon").textContent =
+        juego.icon;
+
+    document.getElementById("gameId").textContent =
+        "ID: " + id;
+
+
+    document.getElementById("fileType").textContent =
+        ".RBXL";
+
+
+    document.getElementById("status").textContent =
+        "Disponible";
+
+
+    document.getElementById("filename").textContent =
+        juego.file;
+
+
+    /*
+       BOTÓN DESCARGA
+
+       El archivo debe estar junto a index.html.
+    */
+
+    document.getElementById("downloadButton").href =
+        juego.file;
+
+
+    resultado.style.display = "block";
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    min-height:100vh;
-    color:white;
-    background:
-        radial-gradient(circle at top,#153b59 0%,#0b1118 40%,#05070a 100%);
+
+/*
+==================================================
+   EXTRAER ID
+==================================================
+*/
+
+function extraerID(texto) {
+
+    /*
+       Si solamente escribieron números
+    */
+
+    if (/^\d+$/.test(texto)) {
+        return texto;
+    }
+
+
+    /*
+       Buscar /games/ID/
+    */
+
+    const match =
+        texto.match(/games\/(\d+)/i);
+
+
+    if (match) {
+        return match[1];
+    }
+
+
+    /*
+       También acepta URL con ?placeId=
+    */
+
+    const place =
+        texto.match(/placeId=(\d+)/i);
+
+
+    if (place) {
+        return place[1];
+    }
+
+
+    return null;
 }
 
-/* NAVBAR */
 
-.navbar{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    background:rgba(5,8,12,.95);
-    border-bottom:1px solid #26313c;
+/*
+==================================================
+   ERROR
+==================================================
+*/
+
+function mostrarError(mensaje) {
+
+    const error =
+        document.getElementById("error");
+
+    error.textContent = mensaje;
+
+    error.style.display = "block";
 }
 
-.logo{
-    font-size:23px;
-    font-weight:900;
-}
 
-.logo span{
-    color:#00a2ff;
-}
+/*
+   ENTER PARA BUSCAR
+*/
 
-.online{
-    color:#58dc8a;
-    font-size:13px;
-}
+document
+    .getElementById("gameInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-/* HERO */
+            if (event.key === "Enter") {
+                buscar();
+            }
 
-.hero{
-    width:min(900px,92%);
-    margin:auto;
-    padding:85px 0 40px;
-    text-align:center;
-}
+        }
+    );
 
-.badge{
-    display:inline-block;
-    padding:8px 15px;
-    border-radius:50px;
-    color:#48b9ff;
-    background:rgba(0,162,255,.12);
-    border:1px solid rgba(0,162,255,.3);
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
+</script>
 
-h1{
-    font-size:clamp(42px,8vw,72px);
-    font-weight:900;
-    margin-bottom:18px;
-}
-
-h1 span{
-    color:#00a2ff;
-}
-
-.subtitle{
-    max-width:650px;
-    margin:auto;
-    color:#9ca6b0;
-    line-height:1.6;
-}
-
-/* SEARCH */
-
-.search{
-    max-width:760px;
-    margin:35px auto 0;
-    padding:8px;
-    display:flex;
-    gap:8px;
-    background:#121820;
-    border:1px solid #2a3540;
-    border-radius:15px;
-}
-
-.search input{
-    flex:1;
-    height:55px;
-    min-width:0;
-    padding:0 17px;
-    border:0;
-    outline:0;
-    border-radius:10px;
-    background:#1c252e;
-    color:white;
-    font-size:15px;
-}
-
-.search input::placeholder{
-    color:#6d7780;
-}
-
-.search button{
-    height:55px;
-    padding:0 28px;
-    border:0;
-    border-radius:10px;
-    background:#00a2ff;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.search button:hover{
-    background:#008fdf;
-}
-
-/* RESULT */
-
-.result{
-    display:none;
-    max-width:760px;
-    margin:22px auto 0;
-    padding:25px;
-    text-align:left;
-    background:#121820;
-    border:1px solid #2a3540;
-    border-radius:17px;
-}
-
-.result.show{
-    display:block;
-}
-
-.game{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-
-.game-icon{
-    width:70px;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    border-radius:15px;
-    background:linear-gradient(135deg,#00a2ff,#0067a8);
-    font-size:32px;
-}
-
-.game-info h2{
-    margin-bottom:7px;
-}
-
-.game-info p{
-    color:#8e99a3;
-    font-size:14px;
-}
-
-.download{
-    display:inline-block;
-    margin-top:22px;
-    padding:13px 20px;
-    border-radius:10px;
-    background:#16c96b;
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.download:hover{
-    background:#12ae5b;
-}
-
-.note{
-    margin-top:13px;
-    color:#69747e;
-    font-size:12px;
-    line-height:1.5;
-}
-
-/* CARDS */
-
-.cards{
-    width:min(1050px,92%);
-    margin:30px auto 80px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-}
-
-.card{
-    padding:24px;
-    background:#12
-```
+</body>
+</html>
