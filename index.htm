@@ -5,34 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Roblox Helper</title>
+    <title>Yona Uncopylocked</title>
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
+            font-family: Arial, Helvetica, sans-serif;
             min-height: 100vh;
-            background:
-                radial-gradient(circle at top, #242424 0%, #101010 45%, #080808 100%);
             color: white;
+            background:
+                radial-gradient(circle at 50% 0%, #19324a 0%, #0b1118 45%, #05070a 100%);
         }
 
         /* NAVBAR */
 
         .navbar {
-            width: 100%;
             height: 70px;
+            width: 100%;
+            padding: 0 7%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 7%;
-            background: rgba(15, 15, 15, 0.92);
-            border-bottom: 1px solid #292929;
+
+            background: rgba(5, 8, 12, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+
             position: sticky;
             top: 0;
             z-index: 10;
@@ -41,109 +43,122 @@
         .logo {
             font-size: 23px;
             font-weight: 900;
-            letter-spacing: 0.5px;
         }
 
         .logo span {
             color: #00a2ff;
         }
 
-        .status {
+        .online {
+            color: #55d98a;
             font-size: 13px;
-            color: #9b9b9b;
         }
 
         /* HERO */
 
         .hero {
-            width: 100%;
-            max-width: 900px;
+            width: min(900px, 92%);
             margin: auto;
-            padding: 85px 20px 40px;
+            padding: 90px 0 45px;
             text-align: center;
         }
 
         .badge {
             display: inline-block;
-            padding: 8px 14px;
+            padding: 8px 15px;
             border-radius: 999px;
-            background: rgba(0, 162, 255, 0.12);
-            border: 1px solid rgba(0, 162, 255, 0.35);
-            color: #45b8ff;
+
+            background: rgba(0,162,255,.12);
+            border: 1px solid rgba(0,162,255,.3);
+
+            color: #4dbaff;
             font-size: 13px;
             font-weight: bold;
-            margin-bottom: 20px;
+
+            margin-bottom: 22px;
         }
 
         h1 {
-            font-size: clamp(38px, 7vw, 72px);
-            line-height: 1;
-            margin-bottom: 18px;
+            font-size: clamp(42px, 8vw, 75px);
             font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
         }
 
         h1 span {
             color: #00a2ff;
         }
 
-        .description {
+        .subtitle {
+            color: #9ba5ae;
             max-width: 650px;
             margin: auto;
-            color: #a8a8a8;
-            font-size: 17px;
             line-height: 1.6;
+            font-size: 16px;
         }
 
         /* SEARCH */
 
-        .search-box {
-            max-width: 760px;
+        .search {
             margin: 38px auto 0;
-            padding: 8px;
+            max-width: 760px;
+
             display: flex;
             gap: 8px;
-            background: #171717;
-            border: 1px solid #303030;
-            border-radius: 15px;
-            box-shadow: 0 15px 50px rgba(0,0,0,.35);
+
+            padding: 8px;
+
+            background: #121820;
+            border: 1px solid #27313b;
+            border-radius: 16px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.35);
         }
 
-        .search-box input {
+        .search input {
             flex: 1;
             min-width: 0;
+
             height: 55px;
             padding: 0 18px;
+
             border: none;
             outline: none;
             border-radius: 10px;
-            background: #222;
+
+            background: #1b232c;
             color: white;
+
             font-size: 15px;
         }
 
-        .search-box input::placeholder {
-            color: #777;
+        .search input::placeholder {
+            color: #68727c;
         }
 
-        .search-box button {
+        .search button {
             height: 55px;
-            padding: 0 27px;
+            padding: 0 28px;
+
             border: none;
             border-radius: 10px;
+
             background: #00a2ff;
             color: white;
+
             font-size: 15px;
-            font-weight: 800;
+            font-weight: bold;
+
             cursor: pointer;
             transition: .2s;
         }
 
-        .search-box button:hover {
+        .search button:hover {
             background: #008fe0;
             transform: translateY(-1px);
         }
 
-        .search-box button:active {
+        .search button:active {
             transform: scale(.97);
         }
 
@@ -151,50 +166,56 @@
 
         .result {
             display: none;
+
             max-width: 760px;
-            margin: 25px auto 0;
+            margin: 20px auto 0;
+
             padding: 22px;
-            background: #171717;
-            border: 1px solid #303030;
-            border-radius: 16px;
+
             text-align: left;
+
+            background: #121820;
+            border: 1px solid #27313b;
+            border-radius: 15px;
         }
 
-        .result.show {
+        .result.visible {
             display: block;
         }
 
-        .result-title {
+        .result h2 {
             font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .result-info {
-            color: #999;
+        .result p {
+            color: #929ba4;
             line-height: 1.6;
             font-size: 14px;
         }
 
-        .result-link {
+        .open-button {
             display: inline-block;
-            margin-top: 15px;
-            color: #45b8ff;
+
+            margin-top: 16px;
+            padding: 11px 17px;
+
+            border-radius: 9px;
+
+            background: #00a2ff;
+            color: white;
+
             text-decoration: none;
             font-weight: bold;
-            word-break: break-all;
+            font-size: 14px;
         }
 
-        .error {
-            color: #ff7777;
-        }
-
-        /* CARDS */
+        /* FEATURES */
 
         .features {
-            max-width: 1050px;
-            margin: 40px auto 80px;
-            padding: 0 20px;
+            width: min(1050px, 92%);
+            margin: 25px auto 80px;
+
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
@@ -202,64 +223,60 @@
 
         .card {
             padding: 25px;
-            background: #151515;
-            border: 1px solid #292929;
+
+            background: rgba(18,24,32,.9);
+            border: 1px solid #27313b;
             border-radius: 16px;
         }
 
-        .icon {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .card-icon {
+            font-size: 28px;
             margin-bottom: 15px;
-            border-radius: 12px;
-            background: #202020;
-            font-size: 20px;
         }
 
-        .card h2 {
-            font-size: 17px;
-            margin-bottom: 8px;
+        .card h3 {
+            margin-bottom: 9px;
         }
 
         .card p {
-            color: #888;
-            font-size: 14px;
+            color: #8d969f;
             line-height: 1.6;
+            font-size: 14px;
         }
 
         /* FOOTER */
 
         footer {
-            padding: 30px 20px;
             text-align: center;
-            color: #666;
-            border-top: 1px solid #222;
+            padding: 28px 20px;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+
+            color: #626c75;
             font-size: 13px;
         }
 
         /* MOBILE */
 
         @media (max-width: 700px) {
+
             .navbar {
                 padding: 0 20px;
             }
 
-            .status {
+            .online {
                 display: none;
             }
 
             .hero {
-                padding-top: 60px;
+                padding-top: 65px;
             }
 
-            .search-box {
+            .search {
                 flex-direction: column;
             }
 
-            .search-box button {
+            .search button {
                 width: 100%;
             }
 
@@ -273,13 +290,15 @@
 <body>
 
     <nav class="navbar">
+
         <div class="logo">
-            🎮 Roblox<span>Helper</span>
+            Yona <span>Uncopylocked</span>
         </div>
 
-        <div class="status">
-            Herramienta gratuita
+        <div class="online">
+            ● ONLINE
         </div>
+
     </nav>
 
 
@@ -288,50 +307,51 @@
         <section class="hero">
 
             <div class="badge">
-                🟢 ONLINE
+                🎮 ROBLOX TOOLS
             </div>
 
             <h1>
-                Roblox <span>Helper</span>
+                Yona <span>Uncopylocked</span>
             </h1>
 
-            <p class="description">
-                Pega el enlace de una experiencia de Roblox para consultar
-                y organizar información pública de tu juego.
+            <p class="subtitle">
+                Herramienta para organizar y consultar enlaces de
+                experiencias de Roblox que tengas permiso para utilizar.
             </p>
 
 
-            <div class="search-box">
+            <div class="search">
 
                 <input
-                    id="gameUrl"
+                    id="gameInput"
                     type="text"
                     placeholder="Pega aquí el link de tu juego de Roblox..."
                     autocomplete="off"
                 >
 
-                <button onclick="searchGame()">
+                <button id="searchButton">
                     🔍 Buscar
                 </button>
 
             </div>
 
 
-            <div id="result" class="result">
+            <div class="result" id="result">
 
-                <div id="resultTitle" class="result-title">
-                    Resultado
-                </div>
+                <h2 id="resultTitle">
+                    🎮 Juego encontrado
+                </h2>
 
-                <div id="resultInfo" class="result-info">
-                </div>
+                <p id="resultText"></p>
 
                 <a
-                    id="resultLink"
-                    class="result-link"
+                    id="openButton"
+                    class="open-button"
                     target="_blank"
                     rel="noopener noreferrer"
-                ></a>
+                >
+                    Abrir juego
+                </a>
 
             </div>
 
@@ -342,17 +362,17 @@
 
             <div class="card">
 
-                <div class="icon">
+                <div class="card-icon">
                     🔗
                 </div>
 
-                <h2>
-                    Fácil de usar
-                </h2>
+                <h3>
+                    Pega el enlace
+                </h3>
 
                 <p>
-                    Copia el enlace de una experiencia y pégalo
-                    directamente en la caja de búsqueda.
+                    Introduce el enlace de una experiencia de Roblox
+                    en la caja de búsqueda.
                 </p>
 
             </div>
@@ -360,17 +380,17 @@
 
             <div class="card">
 
-                <div class="icon">
-                    🎮
+                <div class="card-icon">
+                    ⚡
                 </div>
 
-                <h2>
-                    Roblox
-                </h2>
+                <h3>
+                    Rápido
+                </h3>
 
                 <p>
-                    Diseñado para trabajar con enlaces de experiencias
-                    de Roblox.
+                    La página funciona directamente desde tu navegador
+                    sin necesidad de instalar programas.
                 </p>
 
             </div>
@@ -378,17 +398,17 @@
 
             <div class="card">
 
-                <div class="icon">
+                <div class="card-icon">
                     🛡️
                 </div>
 
-                <h2>
+                <h3>
                     Uso permitido
-                </h2>
+                </h3>
 
                 <p>
-                    Utiliza esta herramienta con experiencias y archivos
-                    que tengas permiso para usar o distribuir.
+                    Utiliza únicamente juegos y archivos que tengas
+                    permiso para copiar, modificar o distribuir.
                 </p>
 
             </div>
@@ -399,75 +419,101 @@
 
 
     <footer>
-        Roblox Helper • Página creada para proyectos permitidos
+        © 2026 Yona Uncopylocked
     </footer>
 
 
     <script>
 
-        function searchGame() {
+        const input = document.getElementById("gameInput");
+        const button = document.getElementById("searchButton");
 
-            const input = document.getElementById("gameUrl");
-            const result = document.getElementById("result");
-            const title = document.getElementById("resultTitle");
-            const info = document.getElementById("resultInfo");
-            const link = document.getElementById("resultLink");
+        const result = document.getElementById("result");
+        const resultTitle = document.getElementById("resultTitle");
+        const resultText = document.getElementById("resultText");
+        const openButton = document.getElementById("openButton");
+
+
+        function searchGame() {
 
             const url = input.value.trim();
 
-            if (!url) {
 
-                result.classList.add("show");
+            if (url === "") {
 
-                title.textContent = "⚠️ Falta el enlace";
+                result.classList.add("visible");
 
-                info.innerHTML =
-                    '<span class="error">Pega primero un enlace de Roblox.</span>';
+                resultTitle.textContent = "⚠️ Falta el enlace";
 
-                link.textContent = "";
-                link.removeAttribute("href");
+                resultText.textContent =
+                    "Pega primero el enlace de una experiencia de Roblox.";
 
-                return;
-            }
-
-
-            if (!url.includes("roblox.com")) {
-
-                result.classList.add("show");
-
-                title.textContent = "❌ Enlace no válido";
-
-                info.innerHTML =
-                    '<span class="error">El enlace no parece ser de Roblox.</span>';
-
-                link.textContent = "";
-                link.removeAttribute("href");
+                openButton.style.display = "none";
 
                 return;
             }
 
 
-            result.classList.add("show");
+            let validUrl;
 
-            title.textContent = "🎮 Enlace encontrado";
+            try {
+                validUrl = new URL(url);
+            } catch {
 
-            info.textContent =
-                "Se encontró un enlace de Roblox. Puedes abrirlo para comprobar la experiencia.";
+                result.classList.add("visible");
 
-            link.textContent = url;
-            link.href = url;
+                resultTitle.textContent = "❌ Enlace inválido";
+
+                resultText.textContent =
+                    "El texto introducido no parece ser un enlace válido.";
+
+                openButton.style.display = "none";
+
+                return;
+            }
+
+
+            if (
+                validUrl.hostname !== "roblox.com" &&
+                !validUrl.hostname.endsWith(".roblox.com")
+            ) {
+
+                result.classList.add("visible");
+
+                resultTitle.textContent = "❌ No es un enlace de Roblox";
+
+                resultText.textContent =
+                    "Introduce un enlace que pertenezca a roblox.com.";
+
+                openButton.style.display = "none";
+
+                return;
+            }
+
+
+            result.classList.add("visible");
+
+            resultTitle.textContent = "✅ Enlace de Roblox encontrado";
+
+            resultText.textContent =
+                "El enlace parece válido. Ábrelo para comprobar la experiencia.";
+
+            openButton.href = url;
+
+            openButton.style.display = "inline-block";
         }
 
 
-        document
-            .getElementById("gameUrl")
-            .addEventListener("keydown", function(event) {
+        button.addEventListener("click", searchGame);
 
-                if (event.key === "Enter") {
-                    searchGame();
-                }
 
-            });
+        input.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+                searchGame();
+            }
+
+        });
 
     </script>
 
