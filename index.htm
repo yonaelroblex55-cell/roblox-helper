@@ -1,522 +1,73 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Yona Uncopylocked</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            color: white;
-            background:
-                radial-gradient(circle at 50% 0%, #19324a 0%, #0b1118 45%, #05070a 100%);
-        }
-
-        /* NAVBAR */
-
-        .navbar {
-            height: 70px;
-            width: 100%;
-            padding: 0 7%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            background: rgba(5, 8, 12, 0.92);
-            border-bottom: 1px solid rgba(255,255,255,.08);
-
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .logo {
-            font-size: 23px;
-            font-weight: 900;
-        }
-
-        .logo span {
-            color: #00a2ff;
-        }
-
-        .online {
-            color: #55d98a;
-            font-size: 13px;
-        }
-
-        /* HERO */
-
-        .hero {
-            width: min(900px, 92%);
-            margin: auto;
-            padding: 90px 0 45px;
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 999px;
-
-            background: rgba(0,162,255,.12);
-            border: 1px solid rgba(0,162,255,.3);
-
-            color: #4dbaff;
-            font-size: 13px;
-            font-weight: bold;
-
-            margin-bottom: 22px;
-        }
-
-        h1 {
-            font-size: clamp(42px, 8vw, 75px);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        h1 span {
-            color: #00a2ff;
-        }
-
-        .subtitle {
-            color: #9ba5ae;
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-        /* SEARCH */
-
-        .search {
-            margin: 38px auto 0;
-            max-width: 760px;
-
-            display: flex;
-            gap: 8px;
-
-            padding: 8px;
-
-            background: #121820;
-            border: 1px solid #27313b;
-            border-radius: 16px;
-
-            box-shadow: 0 20px 60px rgba(0,0,0,.35);
-        }
-
-        .search input {
-            flex: 1;
-            min-width: 0;
-
-            height: 55px;
-            padding: 0 18px;
-
-            border: none;
-            outline: none;
-            border-radius: 10px;
-
-            background: #1b232c;
-            color: white;
-
-            font-size: 15px;
-        }
-
-        .search input::placeholder {
-            color: #68727c;
-        }
-
-        .search button {
-            height: 55px;
-            padding: 0 28px;
-
-            border: none;
-            border-radius: 10px;
-
-            background: #00a2ff;
-            color: white;
-
-            font-size: 15px;
-            font-weight: bold;
-
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .search button:hover {
-            background: #008fe0;
-            transform: translateY(-1px);
-        }
-
-        .search button:active {
-            transform: scale(.97);
-        }
-
-        /* RESULT */
-
-        .result {
-            display: none;
-
-            max-width: 760px;
-            margin: 20px auto 0;
-
-            padding: 22px;
-
-            text-align: left;
-
-            background: #121820;
-            border: 1px solid #27313b;
-            border-radius: 15px;
-        }
-
-        .result.visible {
-            display: block;
-        }
-
-        .result h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .result p {
-            color: #929ba4;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .open-button {
-            display: inline-block;
-
-            margin-top: 16px;
-            padding: 11px 17px;
-
-            border-radius: 9px;
-
-            background: #00a2ff;
-            color: white;
-
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        /* FEATURES */
-
-        .features {
-            width: min(1050px, 92%);
-            margin: 25px auto 80px;
-
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .card {
-            padding: 25px;
-
-            background: rgba(18,24,32,.9);
-            border: 1px solid #27313b;
-            border-radius: 16px;
-        }
-
-        .card-icon {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            margin-bottom: 9px;
-        }
-
-        .card p {
-            color: #8d969f;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            padding: 28px 20px;
-
-            border-top: 1px solid rgba(255,255,255,.07);
-
-            color: #626c75;
-            font-size: 13px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 700px) {
-
-            .navbar {
-                padding: 0 20px;
-            }
-
-            .online {
-                display: none;
-            }
-
-            .hero {
-                padding-top: 65px;
-            }
-
-            .search {
-                flex-direction: column;
-            }
-
-            .search button {
-                width: 100%;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 
-<body>
+<body style="
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+">
 
-    <nav class="navbar">
+    <div>
+        <h1 style="font-size:50px;">
+            🎮 Yona Uncopylocked
+        </h1>
 
-        <div class="logo">
-            Yona <span>Uncopylocked</span>
-        </div>
+        <p style="font-size:20px;color:#aaa;">
+            ¡La página funciona!
+        </p>
 
-        <div class="online">
-            ● ONLINE
-        </div>
+        <input
+            id="link"
+            placeholder="Pega tu link de Roblox"
+            style="
+                width:300px;
+                padding:15px;
+                border-radius:10px;
+                border:0;
+            "
+        >
 
-    </nav>
+        <button
+            onclick="buscar()"
+            style="
+                padding:15px 20px;
+                margin-left:5px;
+                border:0;
+                border-radius:10px;
+                background:#00a2ff;
+                color:white;
+                font-weight:bold;
+            "
+        >
+            Buscar
+        </button>
 
-
-    <main>
-
-        <section class="hero">
-
-            <div class="badge">
-                🎮 ROBLOX TOOLS
-            </div>
-
-            <h1>
-                Yona <span>Uncopylocked</span>
-            </h1>
-
-            <p class="subtitle">
-                Herramienta para organizar y consultar enlaces de
-                experiencias de Roblox que tengas permiso para utilizar.
-            </p>
-
-
-            <div class="search">
-
-                <input
-                    id="gameInput"
-                    type="text"
-                    placeholder="Pega aquí el link de tu juego de Roblox..."
-                    autocomplete="off"
-                >
-
-                <button id="searchButton">
-                    🔍 Buscar
-                </button>
-
-            </div>
-
-
-            <div class="result" id="result">
-
-                <h2 id="resultTitle">
-                    🎮 Juego encontrado
-                </h2>
-
-                <p id="resultText"></p>
-
-                <a
-                    id="openButton"
-                    class="open-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Abrir juego
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <section class="features">
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🔗
-                </div>
-
-                <h3>
-                    Pega el enlace
-                </h3>
-
-                <p>
-                    Introduce el enlace de una experiencia de Roblox
-                    en la caja de búsqueda.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Rápido
-                </h3>
-
-                <p>
-                    La página funciona directamente desde tu navegador
-                    sin necesidad de instalar programas.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🛡️
-                </div>
-
-                <h3>
-                    Uso permitido
-                </h3>
-
-                <p>
-                    Utiliza únicamente juegos y archivos que tengas
-                    permiso para copiar, modificar o distribuir.
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-        © 2026 Yona Uncopylocked
-    </footer>
-
+        <p id="resultado"></p>
+    </div>
 
     <script>
+        function buscar() {
+            const link = document.getElementById("link").value;
+            const resultado = document.getElementById("resultado");
 
-        const input = document.getElementById("gameInput");
-        const button = document.getElementById("searchButton");
-
-        const result = document.getElementById("result");
-        const resultTitle = document.getElementById("resultTitle");
-        const resultText = document.getElementById("resultText");
-        const openButton = document.getElementById("openButton");
-
-
-        function searchGame() {
-
-            const url = input.value.trim();
-
-
-            if (url === "") {
-
-                result.classList.add("visible");
-
-                resultTitle.textContent = "⚠️ Falta el enlace";
-
-                resultText.textContent =
-                    "Pega primero el enlace de una experiencia de Roblox.";
-
-                openButton.style.display = "none";
-
-                return;
+            if (link.includes("roblox.com")) {
+                resultado.innerHTML = "✅ Link de Roblox detectado";
+            } else {
+                resultado.innerHTML = "❌ Ese no parece ser un link de Roblox";
             }
-
-
-            let validUrl;
-
-            try {
-                validUrl = new URL(url);
-            } catch {
-
-                result.classList.add("visible");
-
-                resultTitle.textContent = "❌ Enlace inválido";
-
-                resultText.textContent =
-                    "El texto introducido no parece ser un enlace válido.";
-
-                openButton.style.display = "none";
-
-                return;
-            }
-
-
-            if (
-                validUrl.hostname !== "roblox.com" &&
-                !validUrl.hostname.endsWith(".roblox.com")
-            ) {
-
-                result.classList.add("visible");
-
-                resultTitle.textContent = "❌ No es un enlace de Roblox";
-
-                resultText.textContent =
-                    "Introduce un enlace que pertenezca a roblox.com.";
-
-                openButton.style.display = "none";
-
-                return;
-            }
-
-
-            result.classList.add("visible");
-
-            resultTitle.textContent = "✅ Enlace de Roblox encontrado";
-
-            resultText.textContent =
-                "El enlace parece válido. Ábrelo para comprobar la experiencia.";
-
-            openButton.href = url;
-
-            openButton.style.display = "inline-block";
         }
-
-
-        button.addEventListener("click", searchGame);
-
-
-        input.addEventListener("keydown", function(event) {
-
-            if (event.key === "Enter") {
-                searchGame();
-            }
-
-        });
-
     </script>
 
 </body>
 </html>
-```
